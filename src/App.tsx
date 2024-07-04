@@ -4,6 +4,7 @@ import './App.css'
 import { useEffect } from "react"
 import { showStock } from "./state/stock/stockSlice"
 import { StockItem } from "./types"
+import Product from "./components/Product.tsx"
 
 const App = () => {
 
@@ -25,16 +26,21 @@ const App = () => {
     }, [])
 
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
+    return (
+        <>
+            <h1>Vite + React</h1>
+            <div className="card">
                 {results.map((product) => (
-                <div>{product.productcode}</div>
+                    <Product
+                        title={product.description}
+                        barcode={product.barcode}
+                        sku={product.productcode}
+                        stock={product.availablestock}
+                    />
                 ))}
-      </div>
-    </>
-  )
+            </div>
+        </>
+    )
 }
 
 export default App
