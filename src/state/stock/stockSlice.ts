@@ -1,15 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-
-interface StockItem {
-    title: string
-    stock: number
-    ean: string
-    sku: string
-}
-
-interface StockState {
-    results: StockItem []
-}
+import { StockItem, StockState } from "../../types"
 
 const initialState: StockState = {
     results: []
@@ -25,7 +15,6 @@ const stockSlice = createSlice({
 
     },
 })
-
 
 export const { showStock } = stockSlice.actions
 
