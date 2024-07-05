@@ -4,9 +4,9 @@ const Logo = () => {
             <svg 
                 className="w-14 h-14"
                 xmlns="http://www.w3.org/2000/svg" 
-                xmlns:xlink="http://www.w3.org/1999/xlink" 
+                xmlnsXlink="http://www.w3.org/1999/xlink" 
                 fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" viewBox="0 0 463 463" 
-                xml:space="preserve">
+                xmlSpace="preserve">
                 <g>
                     <path d="M207.5,127c4.143,0,7.5-3.358,7.5-7.5v-8c0-4.142-3.357-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v8   C200,123.642,203.357,127,207.5,127z"/>
                     <path d="M255.5,127c4.143,0,7.5-3.358,7.5-7.5v-8c0-4.142-3.357-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v8   C248,123.642,251.357,127,255.5,127z"/>

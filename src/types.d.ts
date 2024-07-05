@@ -8,5 +8,6 @@ export interface StockItem {
 
 export interface StockState {
     results: StockItem[]
+    query: string
 }
 

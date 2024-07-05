@@ -5,11 +5,14 @@ import { showStock } from "./state/stock/stockSlice"
 import { StockItem } from "./types"
 import Product from "./components/Product.tsx"
 import Logo from "./components/Logo.tsx"
+import Search from "./components/Search.tsx"
 
 const App = () => {
 
+
     const dispatch = useDispatch()
     const results = useSelector((state: RootState) => state.stock.results)
+    const query = useSelector((state: RootState) => state.stock.query)
 
     const loadProducts = async () => {
         const api = 'https://scvlabs.co.uk/api/products.json'
@@ -19,11 +22,9 @@ const App = () => {
         dispatch(showStock(noNull))
     }
 
-
-
     useEffect(() => {
         loadProducts()
-    }, [])
+    }, [query])
 
 
     return (
@@ -32,6 +33,7 @@ const App = () => {
                 <Logo/>
                 Stock Droid
             </h1>
+            <Search/>
             <div className="card">
                 {results.map((product) => (
                     <Product
