@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { showStock } from "./state/stock/stockSlice"
 import { StockItem } from "./types"
 import Product from "./components/Product.tsx"
+import Logo from "./components/Logo.tsx"
 
 const App = () => {
 
@@ -26,10 +27,11 @@ const App = () => {
 
 
     return (
-        <div className="w-full bg-red-500">
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+        <div className="w-full flex flex-col items-center">
+            <h1 className="flex text-3xl items-center font-bold border-b border-b-black pb-3 my-5">
+                <Logo/>
+                Stock Droid
+            </h1>
             <div className="card">
                 {results.map((product) => (
                     <Product
