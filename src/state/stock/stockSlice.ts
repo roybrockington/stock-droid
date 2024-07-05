@@ -10,13 +10,12 @@ const stockSlice = createSlice({
     name: "stock",
     initialState,
     reducers: {
-        showStock: (state, action: PayloadAction<StockItem[]>) => {
-            state.results = action.payload
-        },
         runQuery: (state, action: PayloadAction<string>) => {
             state.query = action.payload
+        },
+        showStock: (state, action: PayloadAction<StockItem[]>) => {
+            state.results = action.payload
         }
-
     },
 })
 

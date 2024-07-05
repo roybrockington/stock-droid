@@ -11,3 +11,10 @@ export interface StockState {
     query: string
 }
 
+
+export interface ProductDisplay {
+    sku: string
+    title: string
+    stock: string
+    barcode: string
+}
