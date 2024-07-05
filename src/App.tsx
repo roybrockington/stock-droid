@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "./state/store"
-import './App.css'
 import { useEffect } from "react"
 import { showStock } from "./state/stock/stockSlice"
 import { StockItem } from "./types"
@@ -27,8 +26,10 @@ const App = () => {
 
 
     return (
-        <>
-            <h1>Vite + React</h1>
+        <div className="w-full bg-red-500">
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
             <div className="card">
                 {results.map((product) => (
                     <Product
@@ -39,7 +40,7 @@ const App = () => {
                     />
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 
