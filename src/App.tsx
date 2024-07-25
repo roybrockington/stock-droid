@@ -3,7 +3,8 @@ import { RootState } from "./state/store"
 import { useEffect } from "react"
 import { showStock } from "./state/stock/stockSlice"
 import { StockItem } from "./types"
-import Product from "./components/Product.tsx"
+import Product from "./components/Product"
+import NoResults from "./components/NoResults"
 import Logo from "./components/Logo.tsx"
 import Search from "./components/Search.tsx"
 import FuzzySearch from "fuzzy-search"
@@ -36,14 +37,14 @@ const App = () => {
 
 
     return (
-        <div className="w-full flex flex-col items-center gap-4">
-            <h1 className="flex text-3xl items-center font-bold border-b border-b-black pb-3 my-5">
+        <div className="w-full flex flex-col items-center">
+            <h1 className="flex text-3xl items-center font-bold border-b border-b-black pb-3 my-5 gap-2">
                 <Logo/>
                 Stock Droid
             </h1>
             <Search/>
             <div className="card">
-                {results.map((product) => (
+                {results.map(product => (
                     <Product
                         title={product.description}
                         barcode={product.barcode}
@@ -52,6 +53,7 @@ const App = () => {
                     />
                 ))}
             </div>
+            <NoResults results={results.length} />
         </div>
     )
 }
