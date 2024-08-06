@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { runQuery, showStockAsync } from "../state/stock/stockSlice"
+import { useDispatch } from "react-redux"
+import { showStockAsync } from "../state/stock/stockSlice"
 import useDebounce from "../hooks/useDebounce"
-import { RootState } from "../state/store"
+import { AppDispatch } from "../state/store"
 
 const Search = () => {
-    const dispatch = useDispatch()
-    const [search, setSearch] = useState('')
+    const dispatch = useDispatch<AppDispatch>()
+    const [search, setSearch] = useState<string>('')
+    const [inStock, setInStock] = useState<boolean>(false)
     const debouncedSearch = useDebounce(search)
-    const results = useSelector((state: RootState) => state.stock.results)
 
     useEffect(() => {
-        dispatch(showStockAsync({search: debouncedSearch, inStock: true}))
-    }, [debouncedSearch])
+        dispatch(showStockAsync({search: debouncedSearch, inStock: inStock}))
+    }, [debouncedSearch, inStock])
 
     return (
         <>
@@ -24,8 +24,14 @@ const Search = () => {
                 type="search"
                 name="search"
             />
-            <button onClick={()=>console.log(results)}>test</button>
-            </>
+            <input
+                type="checkbox"
+                checked={inStock}
+                id="inStock"
+                onChange={() => setInStock(!inStock)}
+            />
+            <label htmlFor="inStock">Only In Stock</label>
+        </>
     )
 
 }

@@ -19,9 +19,11 @@ const stockSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(showStockAsync.fulfilled, (state,action: PayloadAction<StockItem[]>) => {
-        state.results = action.payload
-        })
+        builder.addCase(showStockAsync.pending, () => {
+            console.log('async-pending')
+        }).addCase(showStockAsync.fulfilled, (state, action: PayloadAction<StockItem[]>) => {
+                state.results = action.payload
+            })
     },
 })
 
@@ -33,12 +35,12 @@ export const showStockAsync = createAsyncThunk(
         const data = await response.json()
         const products = data.products.filter((x:StockItem) => x !== null)
 
-
         const searcher = new FuzzySearch(products, ['description', 'productcode'], {
             sort: true,
         })
 
-        return searcher.search(search)
+        const fuzzy = searcher.search(search)
+        return inStock ? fuzzy.filter(x => x.availablestock > 0) : fuzzy
     }
 )
 
