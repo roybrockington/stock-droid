@@ -10,12 +10,15 @@ const Search = () => {
     const [inStock, setInStock] = useState<boolean>(false)
     const debouncedSearch = useDebounce(search)
 
+
     useEffect(() => {
-        dispatch(showStockAsync({search: debouncedSearch, inStock: inStock}))
+        if(debouncedSearch !== '') {
+            dispatch(showStockAsync({search: debouncedSearch, inStock: inStock}))
+        }
     }, [debouncedSearch, inStock])
 
     return (
-        <>
+        <div className="flex flex-col gap-4 items-center">
             <input 
                 placeholder="Search products..." 
                 value={search} 
@@ -24,6 +27,7 @@ const Search = () => {
                 type="search"
                 name="search"
             />
+            <div className="flex gap-4">
             <input
                 type="checkbox"
                 checked={inStock}
@@ -31,7 +35,8 @@ const Search = () => {
                 onChange={() => setInStock(!inStock)}
             />
             <label htmlFor="inStock">Only In Stock</label>
-        </>
+            </div>
+        </div>
     )
 
 }

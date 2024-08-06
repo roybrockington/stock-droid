@@ -19,9 +19,8 @@ const stockSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(showStockAsync.pending, () => {
-            console.log('async-pending')
-        }).addCase(showStockAsync.fulfilled, (state, action: PayloadAction<StockItem[]>) => {
+        builder
+            .addCase(showStockAsync.fulfilled, (state, action: PayloadAction<StockItem[]>) => {
                 state.results = action.payload
             })
     },
@@ -29,7 +28,7 @@ const stockSlice = createSlice({
 
 export const showStockAsync = createAsyncThunk(
     "stock/fetch",
-    async ({search, inStock}: {search:string, inStock:boolean}) => {
+    async ({search, inStock}: {search: string, inStock: boolean}) => {
         const api = 'https://scvlabs.co.uk/api/products.json'
         const response = await fetch(api)
         const data = await response.json()
